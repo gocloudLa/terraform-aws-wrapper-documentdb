@@ -1,0 +1,72 @@
+module_name: Terraform DocumentDB Module
+module_description: The Terraform Wrapper for DocumentDB simplifies the configuration of MongoDB-compatible Database Services on the AWS cloud. This wrapper functions as a predefined template, facilitating the creation and management of Load Balancers by handling all technical details.
+module_badges:
+  - url: "https://github.com/gocloudLa/terraform-aws-wrapper-documentdb/releases/latest"
+    image: "https://img.shields.io/github/v/release/gocloudLa/terraform-aws-wrapper-documentdb.svg?style=for-the-badge"
+    alt: "Latest Release"
+  - url: ""
+    image: "https://img.shields.io/github/last-commit/gocloudLa/terraform-aws-wrapper-documentdb.svg?style=for-the-badge"
+    alt: "Last Commit"
+  - url: "https://registry.terraform.io/modules/gocloudLa/wrapper-documentdb/aws"
+    image: "https://img.shields.io/badge/Terraform-Registry-7B42BC?style=for-the-badge&logo=terraform&logoColor=white"
+    alt: "Terraform Registry"
+quick_start: |
+  ```hcl
+  documentdb_parameters = {
+    "00" = {
+      subnets = data.aws_subnets.public.ids
+      # vpc_name    = "" # Default: ${local.common_name} (dmc-prd)
+  
+      master_username = "user"
+      master_password = "password"
+  
+      # Opcional: Por default abierto el puerto al CIDR de la VPC
+      # ingress_with_cidr_blocks = [
+      #   {
+      #     rule        = "mongodb-27017-tcp"
+      #     cidr_blocks = "0.0.0.0/0"
+      #     description = "Enable all access"
+      #   }
+      # ]
+      dns_records = {
+        "" = {
+          zone_name    = "${local.zone_public}"
+          private_zone = false
+        }
+      }
+    }
+  }
+  
+  documentdb_defaults = var.documentdb_defaults
+  ```
+features:
+  - icon: 🌐
+    title: DNS Record
+    short_description: Registers a CNAME DNS record in a Route53 hosted zone
+    long_description: |
+      Register a CNAME DNS record in a Route53 hosted zone that is present within the account, which can be public or private depending on the desired visibility type of the record.
+    examples:
+      - title: Configuration Code
+        code: |
+          ```hcl
+          dns_records = {
+            "" = {
+              zone_name    = local.zone_private
+              private_zone = true
+            }
+          }
+          ```
+important_notes: ""
+input_table: |
+  | create_enable | Enables or disables the creation of the DocumentDB cluster | `bool` | `true` | no |
+  | database_name | Name of the DocumentDB database | `string` | `"${local.common_name}-${each.key}"` | no |
+  | cluster_identifier | Identifier for the DocumentDB cluster | `string` | `"${local.common_name}-${each.key}"` | no |
+  | master_username | Master username for the database | `string` | `lookup(each.value, "master_username")` | no |
+  | master_password | Master password for the database | `string` | `lookup(each.value, "master_password")` | no |
+  | storage_encrypted | Enables storage encryption for the database | `bool` | `"true"` | no |
+  | deletion_protection | Enables deletion protection for the DocumentDB cluster | `bool` | `"true"` | no |
+  | instance_class | Instance class for DocumentDB instances | `string` | `"db.t3.medium"` | no |
+  | security_group_ids | List of security group IDs for the DocumentDB cluster | `list` | `[module.security_group_documentdb[each.key].security_group_id]` | no |
+  | subnets | List of subnets where DocumentDB instances will be deployed | `list` | `lookup(each.value, "subnets", null)` | no |
+  | instances | Number of DocumentDB instances to be created | `number` | `lookup(each.value, "instances", 1)` | no |
+  | vpc_name | (optional) Custom VPC Name | `string` | ``${local.common_name}` (dmc-prd)` | no |

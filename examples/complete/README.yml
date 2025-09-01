@@ -1,0 +1,7 @@
+title: "Complete Example"
+description: "This example demonstrates the configuration of an AWS DocumentDB instance using Terraform, including subnets, master credentials, and DNS records."
+main_purpose: "The main purpose is to set up an AWS DocumentDB instance with specified parameters and configurations."
+key_features:
+  - "**Subnets**: Uses subnets from the database data source for the DocumentDB instance."
+  - "**Master Credentials**: Specifies the master username and password for the DocumentDB instance."
+  - "**Dns Records**: Configures DNS records for the DocumentDB instance, including the zone name and private zone setting."
