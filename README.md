@@ -75,6 +75,22 @@ dns_records = {
 
 
 
+## 📑 Inputs
+| Name                | Description                                                 | Type     | Default                                                          | Required |
+| ------------------- | ----------------------------------------------------------- | -------- | ---------------------------------------------------------------- | -------- |
+| create_enable       | Enables or disables the creation of the DocumentDB cluster  | `bool`   | `true`                                                           | no       |
+| database_name       | Name of the DocumentDB database                             | `string` | `"${local.common_name}-${each.key}"`                             | no       |
+| cluster_identifier  | Identifier for the DocumentDB cluster                       | `string` | `"${local.common_name}-${each.key}"`                             | no       |
+| master_username     | Master username for the database                            | `string` | `lookup(each.value, "master_username")`                          | no       |
+| master_password     | Master password for the database                            | `string` | `lookup(each.value, "master_password")`                          | no       |
+| storage_encrypted   | Enables storage encryption for the database                 | `bool`   | `"true"`                                                         | no       |
+| deletion_protection | Enables deletion protection for the DocumentDB cluster      | `bool`   | `"true"`                                                         | no       |
+| instance_class      | Instance class for DocumentDB instances                     | `string` | `"db.t3.medium"`                                                 | no       |
+| security_group_ids  | List of security group IDs for the DocumentDB cluster       | `list`   | `[module.security_group_documentdb[each.key].security_group_id]` | no       |
+| subnets             | List of subnets where DocumentDB instances will be deployed | `list`   | `lookup(each.value, "subnets", null)`                            | no       |
+| instances           | Number of DocumentDB instances to be created                | `number` | `lookup(each.value, "instances", 1)`                             | no       |
+| vpc_name            | (optional) Custom VPC Name                                  | `string` | ``${local.common_name}` (dmc-prd)`                               | no       |
+
 
 
 
