@@ -11,7 +11,7 @@ module "wrapper_documentdb" {
 
       master_username = "master"
       master_password = "password"
-      # Opcional: Por default abierto el puerto al CIDR de la VPC
+      # Optional: By default, the port is open to the VPC CIDR
       # ingress_with_cidr_blocks = [
       #   {
       #     rule        = "mongodb-27017-tcp"
