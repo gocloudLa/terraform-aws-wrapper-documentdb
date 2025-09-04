@@ -2,7 +2,6 @@ module "wrapper_documentdb" {
   source = "../../"
 
   metadata = local.metadata
-  project  = local.project
 
   documentdb_parameters = {
     "00" = {
