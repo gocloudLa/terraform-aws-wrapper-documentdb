@@ -13,5 +13,5 @@ module "documentdb" {
   subnets             = lookup(each.value, "subnets", null)
   instances           = lookup(each.value, "instances", 1)
 
-  tags = local.common_tags
+  tags = merge(local.common_tags, try(each.value.tags, var.documentdb_defaults.tags, null))
 }

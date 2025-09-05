@@ -70,3 +70,4 @@ input_table: |
   | subnets | List of subnets where DocumentDB instances will be deployed | `list` | `lookup(each.value, "subnets", null)` | no |
   | instances | Number of DocumentDB instances to be created | `number` | `lookup(each.value, "instances", 1)` | no |
   | vpc_name | (optional) Custom VPC Name | `string` | ``${local.common_name}` (dmc-prd)` | no |
+  | tags | A map of tags to assign to resources. | `map` | `{}` | no |
