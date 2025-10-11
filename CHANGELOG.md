@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/gocloudLa/terraform-aws-wrapper-documentdb/compare/v1.0.0...v1.0.1) (2025-10-11)
+
+
+### Bug Fixes
+
+* **versions:** remove unused random ([#3](https://github.com/gocloudLa/terraform-aws-wrapper-documentdb/issues/3)) ([8bcdf48](https://github.com/gocloudLa/terraform-aws-wrapper-documentdb/commit/8bcdf485856f9cdb74b19b56f67db94ce81d0334))
+
 ## 1.0.0 (2025-09-05)
 
 
