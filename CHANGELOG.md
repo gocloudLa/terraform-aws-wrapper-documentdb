@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/gocloudLa/terraform-aws-wrapper-documentdb/compare/v1.0.1...v1.0.2) (2025-10-29)
+
+
+### Bug Fixes
+
+* **deps:** bump terraform-aws-modules/security-group/aws from 5.3.0 to 5.3.1 in the all-terraform-dependencies group across 1 directory ([#5](https://github.com/gocloudLa/terraform-aws-wrapper-documentdb/issues/5)) ([cd79ba5](https://github.com/gocloudLa/terraform-aws-wrapper-documentdb/commit/cd79ba524649a39392b18862d514bb9ca6699007))
+
 ## [1.0.1](https://github.com/gocloudLa/terraform-aws-wrapper-documentdb/compare/v1.0.0...v1.0.1) (2025-10-11)
 
 
